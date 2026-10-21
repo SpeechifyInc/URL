@@ -44,6 +44,9 @@ let package = Package(
         .testTarget(
             name: "URLTests",
             dependencies: [
+                // Keeps Tuist from linking the macro to SwiftPM's prebuilt swift-syntax. Tuist writes the prebuilt's
+                // absolute path into the build settings, which breaks binary-cache hashes across machines.
+                "URL",
                 "URLMacros",
                 .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
             ]
